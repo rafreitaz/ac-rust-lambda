@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["rfreitas <rfreitas@squaretrade.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+lambda_runtime = "0.2.1"
+serde = "1.0.104"
+serde_derive = "1.0.104"

@@ -1,9 +1,9 @@
-mod model;
+mod lambda_api;
 
 use lambda_runtime::{error::HandlerError, lambda, Context};
 use std::error::Error;
 use serde_json;
-use model::*;
+use lambda_api::*;
 
 fn main() -> Result<(), Box<dyn Error>> {
     lambda!(api_gateway_handler);

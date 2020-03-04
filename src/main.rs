@@ -1,5 +1,9 @@
+mod model;
+
 use lambda_runtime::{error::HandlerError, lambda, Context};
 use std::error::Error;
+use serde_json;
+use model::*;
 
 fn main() -> Result<(), Box<dyn Error>> {
     lambda!(api_gateway_handler);
@@ -7,8 +11,19 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn api_gateway_handler(_request: String, _c: Context) -> Result<String, HandlerError> {
-    let response = "{\"statusCode\": 200}".to_string();
-
+pub fn api_gateway_handler(request: ApiRequest, _c: Context) -> Result<ApiResponse, HandlerError> {
+    let input = request
+        .path_parameters
+        .unwrap()
+        .get("name")
+        .unwrap()
+        .clone();
+    let response = ApiResponse {
+        status_code: 200,
+        body: serde_json::to_string(&EchoResponse { name: input }).unwrap(),
+        ..Default::default()
+    };
     Ok(response)
 }
+
+

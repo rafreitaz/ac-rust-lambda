@@ -27,6 +27,8 @@ Resources:
   ACRustApiFunction:
     Type: "AWS::Serverless::Function"
     Properties:
+      FunctionName: ac-rust-lambda
+      AutoPublishAlias: live
       CodeUri: target/lambda/release/ac-rust-lambda.zip
       Handler: doesnt.matter
       Runtime: provided

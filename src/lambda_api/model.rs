@@ -14,7 +14,7 @@ pub enum HttpMethod {
 
 #[derive(Serialize)]
 pub struct EchoResponse {
-    pub name: String
+    pub name: String,
 }
 
 #[derive(Deserialize)]

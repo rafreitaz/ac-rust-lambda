@@ -1,9 +1,9 @@
 mod lambda_api;
 
-use lambda_runtime::{error::HandlerError, lambda, Context};
-use std::error::Error;
-use serde_json;
 use lambda_api::*;
+use lambda_runtime::{error::HandlerError, lambda, Context};
+use serde_json;
+use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
     lambda!(api_gateway_handler);
@@ -25,5 +25,3 @@ pub fn api_gateway_handler(request: ApiRequest, _c: Context) -> Result<ApiRespon
     };
     Ok(response)
 }
-
-

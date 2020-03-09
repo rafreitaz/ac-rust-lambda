@@ -40,16 +40,8 @@ pub struct ApiResponse {
 }
 
 #[derive(Deserialize, Serialize)]
+#[derive(Default)]
 pub struct RequestBody {
     pub name: String,
     pub age: i32,
-}
-
-impl RequestBody {
-    pub fn new() -> RequestBody {
-        RequestBody {
-            name: String::from("Default"),
-            age: 0,
-        }
-    }
 }

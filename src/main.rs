@@ -15,13 +15,15 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 pub fn api_gateway_handler(request: ApiRequest, _c: Context) -> Result<ApiResponse, HandlerError> {
-    let body: RequestBody = serde_json::from_str(&request.body).unwrap_or(RequestBody::new());
+    let body: RequestBody = serde_json::from_str(&request.body).unwrap_or(RequestBody {
+        ..Default::default()
+    });
 
     log::info!("{}", &body.name);
 
     let response = ApiResponse {
         status_code: 200,
-        body: request.body,
+        body: serde_json::to_string(&body)?,
         ..Default::default()
     };
     Ok(response)

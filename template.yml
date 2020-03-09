@@ -32,12 +32,12 @@ Resources:
       CodeUri: target/lambda/release/ac-rust-lambda.zip
       Handler: doesnt.matter
       Runtime: provided
-      MemorySize: 256
+      MemorySize: 128
       Timeout: 25
       Role: !GetAtt ["ACRustApiFunctionRole", "Arn"]
       Events:
-        WatchsonApiTime:
+        ACRustLambda:
           Type: Api
           Properties:
-            Path: /api/echo/{name}
-            Method: GET
+            Path: /api/echo/body
+            Method: POST

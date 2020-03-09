@@ -15,10 +15,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 pub fn api_gateway_handler(request: ApiRequest, _c: Context) -> Result<ApiResponse, HandlerError> {
-    let body: RequestBody = serde_json::from_str(&request.body).unwrap_or_else(RequestBody {
-        name: String::from("Default"),
-        age: 0,
-    });
+    let body: RequestBody = serde_json::from_str(&request.body).unwrap_or(RequestBody::new());
 
     log::info!("{}", &body.name);
 
